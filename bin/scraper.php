@@ -17,9 +17,9 @@ function showUsage(): void
     echo "    -h, --help    : Muestra este mensaje de ayuda" . PHP_EOL;
     echo PHP_EOL;
     echo "Ejemplos:" . PHP_EOL;
-    echo "  php bin/scraper.php constancia.pdf | jq" . PHP_EOL;
-    echo "  php bin/scraper.php https://dominio.com/mi_constancia.pdf | jq" . PHP_EOL;
-    echo "  php bin/scraper.php --json-schema | jq" . PHP_EOL;
+    echo "  php bin/scraper.php constancia.pdf" . PHP_EOL;
+    echo "  php bin/scraper.php https://dominio.com/mi_constancia.pdf" . PHP_EOL;
+    echo "  php bin/scraper.php --json-schema" . PHP_EOL;
 }
 
 if ($argc < 2 || in_array($argv[1], ['-h', '--help'])) {

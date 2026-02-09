@@ -179,17 +179,17 @@ Puedes pasar una ruta local (montada como volumen) o una URL pública:
 
 **Desde un archivo local:**
 ```shell
-docker run --rm -v $(pwd)/mi-archivo.pdf:/csf.pdf phpcfdi/csf-scraper /csf.pdf | jq
+docker run --rm -v $(pwd)/mi-archivo.pdf:/csf.pdf phpcfdi/csf-scraper /csf.pdf
 ```
 
 **Desde una URL:**
 ```shell
-docker run --rm phpcfdi/csf-scraper https://dominio.com/archivo.pdf | jq
+docker run --rm phpcfdi/csf-scraper https://dominio.com/archivo.pdf
 ```
 
 **Obtener el esquema JSON de salida:**
 ```shell
-docker run --rm phpcfdi/csf-scraper --json-schema | jq
+docker run --rm phpcfdi/csf-scraper --json-schema
 ```
 
 **Ver ayuda:**
