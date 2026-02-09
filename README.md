@@ -163,6 +163,40 @@ Ejemplo de salida de `json_encode($person)` para persona física:
 }
 ```
 
+### Uso con Docker
+
+Esta librería incluye un `Dockerfile` optimizado que funciona como una herramienta de línea de comandos (CLI). La imagen devuelve el resultado en formato **JSON** a través de la salida estándar (stdout), facilitando su integración con otras herramientas como `jq`.
+
+#### Construir la imagen
+
+```bash
+docker build -t csf-scraper:latest .
+```
+
+#### Ejecutar extracción
+
+Puedes pasar una ruta local (montada como volumen) o una URL pública:
+
+**Desde un archivo local:**
+```shell
+docker run --rm -v $(pwd)/mi-archivo.pdf:/csf.pdf phpcfdi/csf-scraper /csf.pdf | jq
+```
+
+**Desde una URL:**
+```shell
+docker run --rm phpcfdi/csf-scraper https://dominio.com/archivo.pdf | jq
+```
+
+**Obtener el esquema JSON de salida:**
+```shell
+docker run --rm phpcfdi/csf-scraper --json-schema | jq
+```
+
+**Ver ayuda:**
+```shell
+docker run --rm phpcfdi/csf-scraper --help
+```
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.
