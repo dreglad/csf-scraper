@@ -192,6 +192,11 @@ docker run --rm phpcfdi/csf-scraper https://dominio.com/archivo.pdf
 docker run --rm phpcfdi/csf-scraper --json-schema
 ```
 
+**Desde la entrada estándar (stdin):**
+```shell
+cat mi-archivo.pdf | docker run --rm -i phpcfdi/csf-scraper -
+```
+
 **Ver ayuda:**
 ```shell
 docker run --rm phpcfdi/csf-scraper --help
