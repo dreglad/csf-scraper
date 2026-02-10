@@ -20,13 +20,29 @@ function showUsage(): void
     echo '  schema                    - Muestra el esquema JSON de la salida' . PHP_EOL;
     echo '  help                      - Muestra este mensaje de ayuda' . PHP_EOL;
     echo PHP_EOL;
+    echo 'Opciones:' . PHP_EOL;
+    echo '  --timeout <segundos>      - Tiempo máximo de espera para peticiones HTTP (default: 10)' . PHP_EOL;
+    echo PHP_EOL;
     echo 'Ejemplos:' . PHP_EOL;
-    echo "  $binary obtain 14111045399 UNA2907227Y5" . PHP_EOL;
+    echo "  $binary obtain 14111045399 UNA2907227Y5 --timeout 20" . PHP_EOL;
     echo "  $binary obtain ./constancia.pdf" . PHP_EOL;
     echo "  $binary obtain https://siafweb.ib.unam.mx/CSF.pdf" . PHP_EOL;
     echo "  cat ./constancia.pdf | $binary obtain -" . PHP_EOL;
     echo "  $binary schema" . PHP_EOL;
 }
+
+$timeout = 10.0;
+$clean_argv = [];
+for ($i = 0; $i < $argc; $i++) {
+    if ('--timeout' === $argv[$i] && isset($argv[$i + 1])) {
+        $timeout = (float) $argv[$i + 1];
+        $i++;
+        continue;
+    }
+    $clean_argv[] = $argv[$i];
+}
+$argv = $clean_argv;
+$argc = count($argv);
 
 foreach ($argv as $arg) {
     if (in_array($arg, ['-h', '--help', 'help'])) {
@@ -48,7 +64,7 @@ if ('schema' === $command || '--json-schema' === $command) {
     exit(0);
 }
 
-$scraper = Scraper::create();
+$scraper = Scraper::create($timeout);
 
 try {
     if ('obtain' === $command) {

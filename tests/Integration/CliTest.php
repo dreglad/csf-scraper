@@ -45,6 +45,16 @@ final class CliTest extends TestCase
         $this->assertStringContainsString('Uso:', $process->getOutput());
     }
 
+    public function test_obtain_with_timeout(): void
+    {
+        $process = $this->runCli(['obtain', '12345678', 'RFC010101AAA', '--timeout', '5']);
+
+        // We expect it to fail because the RFC/CIF are fake, but it should NOT fail because of the option
+        $this->assertFalse($process->isSuccessful());
+        $this->assertStringContainsString('Error:', $process->getErrorOutput());
+        $this->assertStringNotContainsString('no reconocido', $process->getErrorOutput());
+    }
+
     public function test_command_schema(): void
     {
         $process = $this->runCli(['schema']);

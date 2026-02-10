@@ -213,6 +213,16 @@ cat mi-archivo.pdf | docker run --rm -i phpcfdi/csf-scraper obtain -
 docker run --rm phpcfdi/csf-scraper help
 ```
 
+### Opciones Globales
+
+* `--timeout <segundos>`: Configura el tiempo máximo de espera para las peticiones HTTP al SAT (por defecto: 10 segundos).
+
+Ejemplo con timeout personalizado:
+
+```shell
+docker run --rm phpcfdi/csf-scraper obtain 14111045399 UNA2907227Y5 --timeout 20
+```
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.
