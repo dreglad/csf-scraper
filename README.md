@@ -175,31 +175,42 @@ docker build -t csf-scraper:latest .
 
 #### Ejecutar extracción
 
-Puedes pasar una ruta local (montada como volumen) o una URL pública:
+Puedes pasar una ruta local, una URL pública o directamente el ID CIF y RFC:
+
+**Mediante ID CIF y RFC (Flujo principal):**
+
+```shell
+docker run --rm phpcfdi/csf-scraper obtain 19040141021 DIM8701081LA
+```
 
 **Desde un archivo local:**
+
 ```shell
-docker run --rm -v $(pwd)/mi-archivo.pdf:/csf.pdf phpcfdi/csf-scraper /csf.pdf
+docker run --rm -v $(pwd)/mi-archivo.pdf:/csf.pdf phpcfdi/csf-scraper obtain /csf.pdf
 ```
 
 **Desde una URL:**
+
 ```shell
-docker run --rm phpcfdi/csf-scraper https://dominio.com/archivo.pdf
+docker run --rm phpcfdi/csf-scraper obtain https://dominio.com/archivo.pdf
 ```
 
 **Obtener el esquema JSON de salida:**
+
 ```shell
-docker run --rm phpcfdi/csf-scraper --json-schema
+docker run --rm phpcfdi/csf-scraper schema
 ```
 
 **Desde la entrada estándar (stdin):**
+
 ```shell
-cat mi-archivo.pdf | docker run --rm -i phpcfdi/csf-scraper -
+cat mi-archivo.pdf | docker run --rm -i phpcfdi/csf-scraper obtain -
 ```
 
 **Ver ayuda:**
+
 ```shell
-docker run --rm phpcfdi/csf-scraper --help
+docker run --rm phpcfdi/csf-scraper help
 ```
 
 ## Soporte

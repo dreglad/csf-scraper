@@ -59,4 +59,4 @@ USER appuser
 # Essential for the library (pdftotext is part of poppler-utils)
 ENV PATH="/usr/bin:${PATH}"
 
-ENTRYPOINT ["php", "/app/bin/scraper.php"]
+ENTRYPOINT ["php", "/app/bin/csf-scraper"]
